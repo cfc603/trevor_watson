@@ -10,17 +10,34 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
-import os
+from json import loads
+from unipath import Path
+
+from django.core.exceptions import ImproperlyConfigured
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = Path(__file__).ancestor(2)
+PROJECT_DIR = BASE_DIR.parent
+
+
+# get secrets from json file
+with open(Path(PROJECT_DIR.parent + '/secrets/secrets.json')) as f:
+    secrets = loads(f.read())
+
+def get_secrets(setting, secrets=secrets):
+    """Get setting variable or return exception"""
+    try:
+        return secrets[setting]
+    except KeyError:
+        error_msg = 'Set the {0} enviroment variable'.format(setting)
+        raise ImproperlyConfigured
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'b-)@45$q200gow!!&(z#d-9$(t2fdi^zor9)wxsq=pe)(o-b4a'
+SECRET_KEY = get_secrets("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -31,12 +48,16 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # django
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # local
+    'home',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +75,7 @@ ROOT_URLCONF = 'trevor_watson.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [Path(BASE_DIR, 'templates'),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,7 +97,7 @@ WSGI_APPLICATION = 'trevor_watson.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': Path(PROJECT_DIR.parent, 'db.sqlite3'),
     }
 }
 
@@ -116,5 +137,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-
+STATICFILES_DIRS = [
+    Path(BASE_DIR, 'static'),
+]
+STATIC_ROOT = Path(PROJECT_DIR.parent + '/static')
 STATIC_URL = '/static/'
