@@ -1,0 +1,14 @@
+New Contact {% spaceless %}
+{% if contact_entries|length == 1 %}
+    Entry
+{% else %}
+    Entries
+{% endif %}
+{% endspaceless %}
+{% for entry in contact_entries %}
+-------------------------------------
+    Name: {{ entry.name }}
+    Name: {{ entry.email }}
+
+    Message: {{ entry.message }}
+{% endfor %}

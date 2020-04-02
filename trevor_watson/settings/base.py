@@ -57,7 +57,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # local
+    'contact',
     'home',
+
+    # third party
+    'bootstrapform',
 ]
 
 MIDDLEWARE = [
@@ -142,3 +146,12 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = Path(PROJECT_DIR.parent + '/static')
 STATIC_URL = '/static/'
+
+
+# Email settings
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = get_secrets('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = get_secrets('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = '465'
+EMAIL_USE_SSL = True
+SERVER_EMAIL = get_secrets('SERVER_EMAIL')
