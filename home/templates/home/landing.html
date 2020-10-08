@@ -36,23 +36,23 @@
 
                 <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
                     <div class="resume-content">
-                        <h3 class="mb-0">Internet Parts Advisor</h3>
-                        <div class="subheading mb-3">Mercedes-Benz of Daytona Beach</div>
-                        <p>Utilized my programming experience to assist in growing the e-commerce presence for the parts department. Specifically using automation and a internal web application to manage parts availability from the manufacturer resulting in a 375% increase in sales the first six months and an additional 138% increase in the six months following.</p>
-                    </div>
-                    <div class="resume-date text-md-right">
-                        <span class="text-primary">July 2018 - Present</span>
-                    </div>
-                </div>
-
-                <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
-                    <div class="resume-content">
                         <h3 class="mb-0">Freelance Web Developer</h3>
                         <div class="subheading mb-3">Self Employed</div>
                         <p>From a basic CMS powered website to a Tool Management system allowing a team of automotive technicians to check in and out available tools.</p>
                     </div>
                     <div class="resume-date text-md-right">
                         <span class="text-primary">January 2016 - Present</span>
+                    </div>
+                </div>
+
+                <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+                    <div class="resume-content">
+                        <h3 class="mb-0">Internet Parts Advisor</h3>
+                        <div class="subheading mb-3">Mercedes-Benz of Daytona Beach</div>
+                        <p>Utilized my programming experience to assist in growing the e-commerce presence for the parts department. Specifically using automation and a internal web application to manage parts availability from the manufacturer resulting in a 375% increase in sales the first six months and an additional 138% increase in the six months following.</p>
+                    </div>
+                    <div class="resume-date text-md-right">
+                        <span class="text-primary">July 2018 - May 2020</span>
                     </div>
                 </div>
 
@@ -162,6 +162,50 @@
             <div class="w-100">
                 <h2 class="mb-5">Projects</h2>
 
+                <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5" id="mercedes-tools">
+                    <div class="resume-content">
+                        <h3 class="mb-0">Ray of Sun Lawns</h3>
+                        <div class="subheading mt-3">Problem</div>
+                        <p>
+                            CoaCoa needed a website for her new side gig as lawn care specialist to give herself a web presence and ability for customers to request a quote. In addition, she wanted to be able to track her calls from several different advertisements. In the interest of full disclosure, CoaCoa happens to be my lovely wife!
+                        </p>
+                        <div class="subheading mt-3">Solution</div>
+                        <p>
+                            While Django is overkill for a small static site, the ability to track calls was the largest driving factor. With <a href="https://www.twilio.com/" target="_blank">Twilio</a> I was able to utilize unique phone numbers to track the advertising source of incoming calls.
+                        </p>
+                        <p>
+                            <a class="btn btn-secondary" href="https://github.com/cfc603/rosl_calls_app" target="_blank">View Calls App Code</a>
+                            <a class="btn btn-secondary" href="https://github.com/cfc603/rosl_quote_app" target="_blank">View Quote App Code</a>
+                        </p>
+                    </div>
+                    <div class="resume-date text-md-right">
+                        <span class="text-primary">June 2020</span>
+                    </div>
+                </div>
+
+                <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5" id="mercedes-tools">
+                    <div class="resume-content">
+                        <h3 class="mb-0">dj-tasks</h3>
+                        <div class="subheading mt-3">Problem</div>
+                        <p>
+                            There are many strengths Django has to offer, my favorite is the ability to create and reuse apps, not only of your own, but others as well. While I have used countless apps others have created within my Django projects, none of my own. Typically if I needed to reuse a particular app, I would copy and paste. The main drawback of this is making updates are not maintainable.
+                        </p>
+                        <p>
+                            One app I often carried over from one project to the next is a task app to run pieces of a code at regular intervals that would not run in a view, eg. sending emails. It has one management command to run all tasks set in settings which reduced the number of systemd tasks needed to setup on the server.
+                        </p>
+                        <div class="subheading mt-3">Solution</div>
+                        <p>
+                            Lets add it to PyPi! Releasing a Django app to <a href="https://pypi.org/project/dj-tasks/1.0.0/" target="_blank">PyPi</a> can seem a little daunting at first, but with the help of templates such as <a href="https://github.com/pydanny/cookiecutter-djangopackage" target="_blank">cookiecutter-django</a>, it can really make things straightforward. In addition to making it easier to reuse and maintainable, I'm also giving back, albeit tiny, contribution to the django community as a whole.
+                        </p>
+                        <p>
+                            <a class="btn btn-secondary" href="https://github.com/cfc603/dj-tasks" target="_blank">View Code</a>
+                        </p>
+                    </div>
+                    <div class="resume-date text-md-right">
+                        <span class="text-primary">June 2020</span>
+                    </div>
+                </div>
+
                 <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5" id="tool-room">
                     <div class="resume-content">
                         <h3 class="mb-0">Tool Room</h3>
@@ -248,7 +292,7 @@
                         </p>
                     </div>
                     <div class="resume-date text-md-right">
-                        <span class="text-primary">January 2019 - Ongoing</span>
+                        <span class="text-primary">January 2019 - May 2020</span>
                     </div>
                 </div>
 
