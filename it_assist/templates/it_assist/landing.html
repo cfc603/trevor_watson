@@ -1,0 +1,143 @@
+{% extends "it_assist/base.html" %}
+{% load static %}
+
+{% block title %}
+    IT Assistance
+{% endblock title %}
+
+{% block body %}
+    <div class="container-fluid p-0">
+        <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="intro">
+            <div class="w-100">
+                <h1 class="mb-0">IT
+                    <span class="text-primary">Services</span>
+                </h1>
+                <div class="subheading mb-5">Serving Volusia and Flagler ·
+                    <a href="{% url 'contact:contact_entry_create' %}">Contact Me</a>
+                </div>
+                <p class="lead mb-5">Friendly, competent IT services.</p>
+
+            </div>
+        </section>
+
+        <hr class="m-0">
+
+        <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="computers">
+            <div class="w-100">
+                <h2 class="mb-5">Computers</h2>
+
+                <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5" id="hd-upgrade">
+                    <div class="resume-content">
+                        <h3 class="mb-0">Hard Drive Upgrade</h3>
+                        <p>While many computers introduced in the past few years have included the newer, faster type of hard drive called SSD, most continue to use the old type, HDD. For a deep dive on the difference between the two, check out this article from <a href="https://www.intel.com/content/www/us/en/products/docs/memory-storage/solid-state-drives/ssd-vs-hdd.html" target="_blank">intel.com</a> The biggest takeaway is speed, 10 to 20 times of the older style.</p>
+                        <p>If you are looking for a quick, cost effective way, upgrading your hard drive should definitely be considered.</p>
+                    </div>
+                </div>
+
+                <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5" id="backup">
+                    <div class="resume-content">
+                        <h3 class="mb-0">Backup Install and Setup</h3>
+                        <p>Hard Drives are, generally speaking, a very robust, dependable part of your computer, but they do fail. I don't know about you, but my day to day work life depends on accessing the data on my laptop. If the data were to disappear, it would be catastrophic.</p>
+                        <p>The best way to mitigate risk, is have some insurance! In this case, a local backup and cloud backup.</p>
+                    </div>
+                </div>
+
+                <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5" id="virus">
+                    <div class="resume-content">
+                        <h3 class="mb-0">Virus Removal</h3>
+                        <p>Whoops! Did you accidentally download a virus? Don't despair. In many cases this can be quickly rectified.</p>
+                    </div>
+                </div>
+
+                <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5" id="antivirus">
+                    <div class="resume-content">
+                        <h3 class="mb-0">Antivirus Setup</h3>
+                        <p>While educating users is important in preventing virus's to start, an antivirus is going to provide that extra security. Let's face it, the people who create viruses are clever folks, and are always devising new ways trick PC users into downloading their programs.</p>
+                        <p>Don't go unprotected, be sure to have antivirus software on all your computers.</p>
+                    </div>
+                </div>
+
+                <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5" id="wifi">
+                    <div class="resume-content">
+                        <h3 class="mb-0">WiFi Setup</h3>
+                        <p>Wifi is essential in a business these days, not only for your own computers, your customers will appreciate the faster connection while waiting. If not implemented correctly, you can leave your network open to vulnerabilities, or experience bad connections.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <hr class="m-0">
+
+        <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="telephone">
+            <div class="w-100">
+                <h2 class="mb-5">Telephone</h2>
+
+                <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5" id="virtual-numbers">
+                    <div class="resume-content">
+                        <h3 class="mb-0">Virtual Phone Numbers</h3>
+                        <p>I LOVE virtual phone numbers, and I'm not sure why more businesses have not caught on to this. Here's the biggest use case, tracking advertisements.</p>
+                        <p>My wife started her own lawn service on the side, she loves working outdoors. When she first started out, she tried a number of different advertising venues. Ironically, the cheapest advertising source gave her the largest ROI. In fact, something like 60% of her monthly revenue came from a $82 advertisement. At a fraction of her advertising budget, we were able to track this by having a virtual phone number for each advertising source.</p>
+                    </div>
+                </div>
+
+                <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5" id="ivr">
+                    <div class="resume-content">
+                        <h3 class="mb-0">IVR Setup</h3>
+                        <p>What is an IVR? Interactive Voice Response! Think about calling your Internet provider, "Press 1 for customer service; Press 2 for billing...", but way better. To name a few features:</p>
+                        <p>
+                            <ul>
+                                <li>Voice Recognition</li>
+                                <li>Accept Payments</li>
+                                <li>Collect and Remit data</li>
+                                <li>Add calls to a queue</li>
+                            </ul>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5" id="chatbots">
+                    <div class="resume-content">
+                        <h3 class="mb-0">SMS Chatbots</h3>
+                        <p>Text messaging is the primary source of communication in todays society. Unfortunately businesses have been slow to adopt in their tools of communicating with their customers. One of the reasons for this is having enough staff to promptly reply to customer messages.</p>
+                        <p>A chatbot can be a great way to offer messaging without the additional staffing overhead. By programming the chatbot bot to answer frequent scenarios, and even collect and remit data, you can reduce the load on your employees, while offering a convenient way for your customers to engage with your company.</p>
+                    </div>
+                </div>
+
+                <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5" id="sms-appointments">
+                    <div class="resume-content">
+                        <h3 class="mb-0">SMS Appointment Reminders</h3>
+                        <p>I love my dentist office, not only because of the great work they do on keeping my smile healthy, but they send me a text reminding me of upcoming appointments. Thank you <a href="https://www.tomokafamilydentistry.com/" target="_blank">Tomoka Family Dentistry</a> for having this feature!</p>
+                        <p>While a lot of <abbr title="Customer Relationship Manager">CRM's</abbr> are integrating text messaging into their software, not all on are on-board just yet. That's okay, we can certainly work around it.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <hr class="m-0">
+
+        <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="development">
+            <div class="w-100">
+                <h2 class="mb-5">Development</h2>
+
+                <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5" id="web">
+                    <div class="resume-content">
+                        <h3 class="mb-0">Websites</h3>
+                        <p>While I'm not very proficient with the design side of websites, I know some very talented web designers that are. Once you have your site designed, you will need a back-end to make it all work, that's where I come in.</p>
+                        <p>Whether you need basic hosting, or custom programing, let's <a href="{% url 'contact:contact_entry_create' %}">talk more</a>.</p>
+                    </div>
+                </div>
+
+                <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5" id="automation">
+                    <div class="resume-content">
+                    <h3 class="mb-0">Repetition Automation</h3>
+                    <p>If you perform a task on a computer over and over on your computer, you can probably automate it, freeing up your time for more thought provoking work.</p>
+                    <p>Want to know if it can be automated, <a href="{% url 'contact:contact_entry_create' %}">lets talk</a>.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+{% endblock body %}

@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     # local
     'contact',
     'home',
+    'it_assist',
 
     # third party
     'bootstrapform',
