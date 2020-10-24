@@ -1,0 +1,3 @@
+New business view from {{ business.name }} in {{ business.campaign.name }}.
+
+Login to the admin console for more info: https://www.trevorwatson.info{% url 'admin:form_marketing_business_change' business.pk %}

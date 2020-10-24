@@ -44,6 +44,7 @@ SECRET_KEY = get_secrets("SECRET_KEY")
 
 INSTALLED_APPS = [
     # django
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -53,11 +54,15 @@ INSTALLED_APPS = [
     # local
     'about',
     'contact',
+    'form_marketing',
     'home',
     'it_assist',
 
     # third party
     'bootstrapform',
+    'dj_tasks',
+    'rest_framework',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -68,6 +73,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'form_marketing.middleware.ViewTrackingMiddleware',
 ]
 
 ROOT_URLCONF = 'trevor_watson.urls'
@@ -137,6 +143,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
+MEDIA_ROOT = Path(PROJECT_DIR.parent, 'media')
+MEDIA_URL = '/media/'
+
 STATICFILES_DIRS = [
     Path(BASE_DIR, 'static'),
 ]
@@ -145,9 +154,32 @@ STATIC_URL = '/static/'
 
 
 # Email settings
-EMAIL_HOST = 'smtp.gmail.com'
+ADMINS = [("Trevor", "wtrevor162@gmail.com"),]
+EMAIL_HOST = 'smtp.mailgun.com'
 EMAIL_HOST_USER = get_secrets('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = get_secrets('EMAIL_HOST_PASSWORD')
-EMAIL_PORT = '465'
-EMAIL_USE_SSL = True
+EMAIL_PORT = '587'
+EMAIL_SUBJECT_PREFIX = "[TrevorWatson.info] "
+EMAIL_USE_TLS = True
+MANAGERS = [] + ADMINS
 SERVER_EMAIL = get_secrets('SERVER_EMAIL')
+
+
+# dj-tasks
+DJTASKS_TASKS = [
+    "contact.tasks.ContactEntryTask",
+    "form_marketing.tasks.BusinessViewNotify",
+]
+DJTASKS_LOCK_ID = "trevor_watson"
+DJTASKS_SLEEP_INTERVAL = 60 * 10 # 10 minutes
+
+
+# drf
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+}

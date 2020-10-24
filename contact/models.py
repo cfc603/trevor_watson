@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.core.mail import send_mail
+from django.core.mail import mail_managers
 from django.db import models
 from django.template.loader import get_template
 
@@ -23,13 +23,8 @@ class ContactEntry(models.Model):
         entries = cls.objects.filter(sent=False)
         if entries:
             template = get_template("contact/email.txt")
-            email = send_mail(
-                "trevorwatson.info -- New Contact Entry", # subject
-                template.render({"contact_entries": entries}), # content
-                settings.EMAIL_HOST_USER, # from email
-                [settings.EMAIL_HOST_USER], # to email
-                True, # fail silently
+            mail_managers(
+                subject="New Contact Entry",
+                message=template.render({"contact_entries": entries})
             )
-
-            if email:
-                entries.update(sent=True)
+            entries.update(sent=True)
