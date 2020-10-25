@@ -171,7 +171,7 @@ DJTASKS_TASKS = [
     "form_marketing.tasks.BusinessViewNotify",
 ]
 DJTASKS_LOCK_ID = "trevor_watson"
-DJTASKS_SLEEP_INTERVAL = 60 * 10 # 10 minutes
+DJTASKS_SLEEP_INTERVAL = 60 * 2 # 2 minutes
 
 
 # drf
