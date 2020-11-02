@@ -1,0 +1,7 @@
+{% include "_nav_item.html" with link="posts" title="Posts" %}
+{% if request.GET.tag %}
+    <li class="nav-item">
+        <a class="nav-link js-scroll-trigger" href="{% url 'wagtail_serve' '' %}?intro=false">All Posts</a>
+    </li>
+{% endif %}
+{% include "_nav_item.html" with link="tags" title="Tags" %}

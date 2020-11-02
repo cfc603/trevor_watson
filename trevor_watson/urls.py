@@ -18,12 +18,25 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
+from wagtail.admin import urls as wagtailadmin_urls
+from wagtail.core import urls as wagtail_urls
+from wagtail.documents import urls as wagtaildocs_urls
+
+
 urlpatterns = [
     path('about/', include('about.urls')),
     path('contact/', include('contact.urls')),
     path('', include('home.urls')),
     path('it/', include('it_assist.urls')),
     path('admin/', admin.site.urls),
+
+    # wagtail
+    path('cms/', include(wagtailadmin_urls)),
+    path('documents/', include(wagtaildocs_urls)),
+    path('blog/', include(wagtail_urls)),
+
+    # form_marketing should be last due to it's
+    # very liberal url policy
     path('', include('form_marketing.urls')),
 ]
 

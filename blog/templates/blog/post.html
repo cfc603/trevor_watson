@@ -1,0 +1,59 @@
+{% extends "blog/base.html" %}
+{% load wagtailcore_tags wagtailimages_tags blog_tags %}
+
+{% block app_nav %}
+    <li class="nav-item">
+        <a class="nav-link js-scroll-trigger" href="{% url 'wagtail_serve' '' %}">Blog</a>
+    </li>
+    {% include "_nav_item.html" with link="content" title="Content" %}
+    {% if request.GET.last %}
+        <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#" onclick="goBack()">Back</a>
+        </li>
+    {% endif %}
+{% endblock app_nav %}
+
+{% block title %}
+    {{ page.title }}
+{% endblock title %}
+
+{% block body %}
+    <div class="container-fluid p-0">
+        <section class="template-section" id="intro">
+            <div class="template-section-content">
+                <h1 class="mb-0">{{ page.title|text_primary }}</h1>
+                <div class="subheading mb-5">
+                    {{ page.date }}
+                </div>
+                <p class="lead mb-5">{{ page.intro }}</p>
+                {% if page.get_tags.exists %}
+                    <div class="tags">
+                        <h3>Tags</h3>
+                        {% for tag in page.get_tags %}
+                            <a href="{% url 'wagtail_serve' '' %}?tag={{ tag }}&amp;intro=false">
+                                <button type="button" class="btn btn-secondary">{{ tag }}</button>
+                            </a>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </section>
+
+        <section class="template-section" id="content">
+            <div class="template-section-content">
+                {% for block in page.body %}
+                    {% if block.block_type == "heading" %}
+                        <h2 class="mb-5">{{ block.value }}</h2>
+                    {% elif block.block_type == "image" %}
+                        {% image block.value max-1104x1063 format-webp-lossless class="img-fluid" %}
+                    {% else %}
+                        <section class="block-{{ block.block_type }}">
+                            {% include_block block %}
+                        </section>
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+        </section>
+    </div>
+{% endblock body %}

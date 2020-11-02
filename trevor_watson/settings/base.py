@@ -53,6 +53,7 @@ INSTALLED_APPS = [
 
     # local
     'about',
+    'blog',
     'contact',
     'form_marketing',
     'home',
@@ -63,6 +64,23 @@ INSTALLED_APPS = [
     'dj_tasks',
     'rest_framework',
     'rest_framework.authtoken',
+
+    # wagtail
+    'wagtail.contrib.forms',
+    'wagtail.contrib.redirects',
+    'wagtail.embeds',
+    'wagtail.sites',
+    'wagtail.users',
+    'wagtail.snippets',
+    'wagtail.documents',
+    'wagtail.images',
+    'wagtail.search',
+    'wagtail.admin',
+    'wagtail.core',
+
+    'modelcluster',
+    'taggit',
+    'wagtailcodeblock',
 ]
 
 MIDDLEWARE = [
@@ -74,6 +92,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'form_marketing.middleware.ViewTrackingMiddleware',
+    'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 ]
 
 ROOT_URLCONF = 'trevor_watson.urls'
@@ -183,3 +202,27 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ],
 }
+
+
+# wagtail
+WAGTAIL_SITE_NAME = "Trevor Watson"
+
+
+# wagtailcodeblock
+WAGTAIL_CODE_BLOCK_LANGUAGES = (
+    ('bash', 'Bash + Shell'),
+    ('css', 'CSS'),
+    ('css-extras', 'CSS Extras'),
+    ('django', 'Django/Jinja2'),
+    ('git', 'Git'),
+    ('html', 'HTML'),
+    ('javascript', 'JavaScript'),
+    ('json', 'JSON'),
+    ('less', 'Less'),
+    ('markdown', 'Markdown'),
+    ('python', 'Python'),
+    ('regex', 'Regex'),
+    ('sass', 'Sass (Sass)'),
+    ('sql', 'SQL'),
+    ('yaml', 'YAML'),
+)

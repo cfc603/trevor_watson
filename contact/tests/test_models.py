@@ -16,38 +16,29 @@ class ContactEntryTest(TestCase):
         # asserts
         self.assertEqual(entry.__str__(), "Contact Entry from Test Name")
 
-    @patch("contact.models.send_mail")
-    def test_send_entries_if_not_entries(self, mock_send_mail):
+    @patch("contact.models.mail_managers")
+    def test_send_entries_if_not_entries(self, mock_mail_managers):
         # setup
         baker.make("contact.ContactEntry", sent=True)
         ContactEntry.send_entries()
 
         # asserts
-        mock_send_mail.assert_not_called()
+        mock_mail_managers.assert_not_called()
 
-    @patch("contact.models.send_mail", return_value=1)
-    def test_send_entries_if_entries(self, mock_send_mail):
+    @patch("contact.models.mail_managers", return_value=1)
+    def test_send_entries_if_entries(self, mock_mail_managers):
         # setup
         baker.make("contact.ContactEntry", sent=False)
         ContactEntry.send_entries()
 
         # asserts
-        mock_send_mail.assert_called_once()
+        mock_mail_managers.assert_called_once()
 
-    @patch("contact.models.send_mail", return_value=1)
-    def test_send_entries_if_email(self, mock_send_mail):
+    @patch("contact.models.mail_managers", return_value=1)
+    def test_send_entries_if_email(self, mock_mail_managers):
         # setup
         baker.make("contact.ContactEntry", sent=False)
         ContactEntry.send_entries()
 
         # asserts
         self.assertTrue(ContactEntry.objects.filter(sent=True).exists())
-
-    @patch("contact.models.send_mail", return_value=0)
-    def test_send_entries_if_not_email(self, mock_send_mail):
-        # setup
-        baker.make("contact.ContactEntry", sent=False)
-        ContactEntry.send_entries()
-
-        # asserts
-        self.assertTrue(ContactEntry.objects.filter(sent=False).exists())

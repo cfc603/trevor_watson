@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block app_nav %}
+    {% include "blog/_nav.html" %}
+{% endblock app_nav %}
+
+{% block page_js %}
+    <script type="text/javascript">
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+{% endblock page_js %}
