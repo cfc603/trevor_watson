@@ -126,6 +126,5 @@ class ViewPath(models.Model):
 
     @property
     def name(self):
-        resolver = resolve(self.path)
-        return f"{resolver.namespace}:{resolver.url_name}"
+        return self.path
     
