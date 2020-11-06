@@ -7,8 +7,11 @@ from django.conf import settings
 from django.db import models
 from django.template import Context, Template
 from django.urls import resolve, reverse
+from django.urls.exceptions import NoReverseMatch
 
 from model_utils.models import TimeStampedModel
+
+from blog.models import Post
 
 
 def template_dir(instance, filename):
@@ -23,14 +26,19 @@ class Campaign(TimeStampedModel):
     template = models.FileField(upload_to=template_dir, null=True, blank=True)
 
     def __str__(self):
-        return f"{self.name} at {self.view}"
+        string = f"{self.name} at "
+        if not self.is_post():
+            string += self.view
+        else:
+            string += self.get_post().title
+        return string
 
     @staticmethod
     def get_view_choices():
         choices = []
         for app in apps.get_app_configs():
             is_local = settings.PROJECT_DIR in app.path
-            if is_local:
+            if is_local and not app.label == "form_marketing":
                 label = app.label
                 try:
                     module = importlib.import_module(f"{label}.urls")
@@ -40,10 +48,25 @@ class Campaign(TimeStampedModel):
                         choices.append([f"{label}:{view}", display])
                 except ModuleNotFoundError:
                     pass
+
+        # get blog posts
+        for post in Post.objects.live():
+            choices.append([f"blog:{post.pk}", f"{post.title} in blog app"])
+
         return choices
 
     def get_path(self):
-        return reverse(self.view)
+        if not self.is_post():
+            return reverse(self.view)
+        return self.get_post().url
+
+    def get_post(self):
+        pk = self.view
+        pk = pk[pk.find(":")+1:]
+        return Post.objects.get(pk=pk)
+
+    def is_post(self):
+        return "blog" in self.view
 
 
 class Business(TimeStampedModel):

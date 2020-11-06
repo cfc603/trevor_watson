@@ -4,6 +4,8 @@ from django.test import TestCase, override_settings
 
 from model_bakery import baker
 
+from blog.models import Post
+
 from ..models import Campaign, Business, BusinessView, ViewPath
 
 
@@ -17,7 +19,9 @@ TEST_INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # local
+    'blog',
     'home',
+    'form_marketing',
 
     # third party
     'bootstrapform',
@@ -26,6 +30,8 @@ TEST_INSTALLED_APPS = [
 
 class CampaignModelTest(TestCase):
 
+    fixtures = ["form_marketing"]
+
     def test_str(self):
         # setup
         c = baker.make(Campaign, name="Test Campaign", view="it:test")
@@ -33,12 +39,22 @@ class CampaignModelTest(TestCase):
         # asserts
         self.assertEqual(c.__str__(), "Test Campaign at it:test")
 
+    def test_str_post(self):
+        # setup
+        c = baker.make(Campaign, name="Test Campaign" ,view="blog:4")
+
+        # asserts
+        self.assertEqual(c.__str__(), "Test Campaign at My First Blog Post")
+
     @override_settings(INSTALLED_APPS=TEST_INSTALLED_APPS)
-    def test_get_view_choices(self):
+    def test_get_view_choices_blog(self):
         # asserts
         self.assertEqual(
             Campaign.get_view_choices(),
-            [["home:landing","landing view in home app"]]
+            [
+                ["home:landing","landing view in home app"],
+                ["blog:4", "My First Blog Post in blog app"]
+            ]
         )
 
     @patch("form_marketing.models.reverse", return_value="path")
@@ -50,6 +66,35 @@ class CampaignModelTest(TestCase):
         # asserts
         mock_reverse.assert_called_once_with("it:test")
         self.assertEqual(path, "path")
+
+    def test_get_path_blog_post(self):
+        # setup
+        c = baker.make(Campaign, view="blog:4")
+
+        # asserts
+        self.assertEqual(c.get_path(), "/blog/my-first-blog-post/")
+
+    def test_get_post(self):
+        # setup
+        c = baker.make(Campaign, view="blog:4")
+        p = Post.objects.get(pk=4)
+
+        # asserts
+        self.assertEqual(p, c.get_post())
+
+    def test_is_post_true(self):
+        # setup
+        c = baker.make(Campaign, view="blog:4")
+
+        # asserts
+        self.assertTrue(c.is_post())
+
+    def test_is_post_false(self):
+        # setup
+        c = baker.make(Campaign, view="home:landing")
+
+        # asserts
+        self.assertFalse(c.is_post())
 
 
 class BusinessTest(TestCase):
@@ -122,7 +167,7 @@ class BusinessViewTest(TestCase):
         )
 
         # asserts
-        self.assertEqual(bv.__str__(), "Test Name viewed home:landing")
+        self.assertEqual(bv.__str__(), "Test Name viewed /")
 
     def test_create_from_request(self):
         # setup
@@ -169,4 +214,4 @@ class ViewPathTest(TestCase):
         vp = baker.make(ViewPath, path="/")
 
         # asserts
-        self.assertEqual(vp.name, "home:landing")
+        self.assertEqual(vp.name, "/")
