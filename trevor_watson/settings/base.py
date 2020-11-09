@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'it_assist',
 
     # third party
+    'analytical',
     'bootstrapform',
     'dj_tasks',
     'rest_framework',
@@ -192,6 +193,11 @@ DJTASKS_TASKS = [
 DJTASKS_LOCK_ID = "trevor_watson"
 DJTASKS_SLEEP_INTERVAL = 60 * 2 # 2 minutes
 
+
+# django-analytical
+GOOGLE_ANALYTICS_PROPERTY_ID = "UA-96559286-2"
+GOOGLE_ANALYTICS_SITE_SPEED = True
+GOOGLE_ANALYTICS_INTERNAL_IPS = get_secrets("LOCAL_IP")
 
 # drf
 REST_FRAMEWORK = {

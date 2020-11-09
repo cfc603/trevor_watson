@@ -5,6 +5,7 @@ beautifulsoup4==4.8.2
 certifi==2020.11.8
 chardet==3.0.4
 dj-tasks==1.0.0
+django-analytical==2.6.0
 django-bootstrap-form==3.4
 django-filter==2.4.0; python_version >= '3.5'
 django-model-utils==4.0.0

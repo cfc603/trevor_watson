@@ -17,6 +17,7 @@ dj-tasks = "*"
 djangorestframework = "*"
 wagtail = "*"
 wagtailcodeblock = "*"
+django-analytical = "*"
 
 [requires]
 python_version = "3.6"
