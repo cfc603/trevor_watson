@@ -56,7 +56,10 @@ class Index(Page):
         # in order to access child properties, such as youtube_video_id and subtitle
         context["posts"] = posts
 
-        context["tags"] = TaggitTag.objects.filter(post__isnull=False).distinct()
+        tags = TaggitTag.objects.filter(post__isnull=False)
+        tags = tags.distinct()
+        tags = tags.order_by("name")
+        context["tags"] = tags
         return context
 
     def get_posts(self, tag=None):
@@ -97,7 +100,7 @@ class Post(Page):
     ]
 
     def get_tags(self):
-        return TaggitTag.objects.filter(post=self)
+        return TaggitTag.objects.filter(post=self).order_by("name")
 
 
 class Tag(TaggedItemBase):

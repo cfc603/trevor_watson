@@ -29,11 +29,7 @@
                 {% if page.get_tags.exists %}
                     <div class="tags">
                         <h3>Tags</h3>
-                        {% for tag in page.get_tags %}
-                            <a href="{% url 'wagtail_serve' '' %}?tag={{ tag }}&amp;intro=false">
-                                <button type="button" class="btn btn-secondary">{{ tag }}</button>
-                            </a>
-                        {% endfor %}
+                        {% include "blog/_tags.html" with tags=page.get_tags %}
                     </div>
                 {% endif %}
             </div>

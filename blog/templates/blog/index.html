@@ -83,11 +83,7 @@
         <section class="template-section" id="tags">
             <div class="template-section-content">
                 <h2 class="mb-5">Tags</h2>
-                {% for tag in tags %}
-                    <a href="{% url 'wagtail_serve' '' %}?tag={{ tag }}&amp;intro=false">
-                        <button type="button" class="btn btn-secondary">{{ tag }}</button>
-                    </a>
-                {% endfor %}
+                {% include "blog/_tags.html" %}
             </div>
         </section>
     </div>
