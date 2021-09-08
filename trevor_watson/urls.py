@@ -34,10 +34,6 @@ urlpatterns = [
     path('cms/', include(wagtailadmin_urls)),
     path('documents/', include(wagtaildocs_urls)),
     path('blog/', include(wagtail_urls)),
-
-    # form_marketing should be last due to it's
-    # very liberal url policy
-    path('', include('form_marketing.urls')),
 ]
 
 

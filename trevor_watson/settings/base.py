@@ -55,7 +55,6 @@ INSTALLED_APPS = [
     'about',
     'blog',
     'contact',
-    'form_marketing',
     'home',
     'it_assist',
 
@@ -92,7 +91,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'form_marketing.middleware.ViewTrackingMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 ]
 
@@ -126,6 +124,8 @@ DATABASES = {
         'NAME': Path(PROJECT_DIR.parent, 'db.sqlite3'),
     }
 }
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 
 # Password validation
@@ -188,7 +188,6 @@ SERVER_EMAIL = get_secrets('SERVER_EMAIL')
 # dj-tasks
 DJTASKS_TASKS = [
     "contact.tasks.ContactEntryTask",
-    "form_marketing.tasks.BusinessViewNotify",
 ]
 DJTASKS_LOCK_ID = "trevor_watson"
 DJTASKS_SLEEP_INTERVAL = 60 * 2 # 2 minutes
