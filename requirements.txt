@@ -2,7 +2,7 @@
 anyascii==0.3.0; python_version >= '3.3'
 asgiref==3.4.1; python_version >= '3.6'
 beautifulsoup4==4.9.3
-certifi==2021.10.8
+certifi==2022.12.7
 charset-normalizer==2.0.9; python_version >= '3'
 dj-tasks==1.1.0
 django-analytical==3.0.0
